@@ -263,3 +263,8 @@ def solve_ex(A, B, *, left=True, check_errors=False, out=None):
             result = A * math.nan
             info = ivy.ones(A.shape[:-2], dtype=ivy.int32)
             return result, info
+
+@to_ivy_arrays_and_back
+@with_unsupported_dtypes({"2.0.1 and below": ("bfloat16", "float16")}, "torch")
+def angle(input, *, out=None):
+    return ivy.angle(input, out=out)
